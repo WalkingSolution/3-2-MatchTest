@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileSpawner : MonoBehaviour
@@ -11,6 +12,8 @@ public class TileSpawner : MonoBehaviour
     public GameObject [,] allTiles;
     public List<Gem> gems;
     public enum GemType {banana, blueberry, apple,pear,strawberry,orange,grapes};
+    public enum BoardState{move,wait}
+    public BoardState currentState = BoardState.move;
 
     void Awake()
     {
@@ -56,6 +59,7 @@ public class TileSpawner : MonoBehaviour
         Gem currentGem = Instantiate(_gem,new Vector3(pos.x,pos.y,0),Quaternion.identity);
         currentGem.name = "Gem "+pos.x+","+pos.y;
         currentGem.gemPos = pos;
+        currentGem.SetUpGem(pos,this);
         currentGem.transform.parent= this.transform;
 
 
