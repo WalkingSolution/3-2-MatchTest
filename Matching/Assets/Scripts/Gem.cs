@@ -16,4 +16,10 @@ public class Gem : MonoBehaviour
     {
         
     }
+
+    public void SetUpGem(Vector2Int pos, TileSpawner _board)
+    {
+        gemPos= pos;
+        board= _board;
+    }
 }

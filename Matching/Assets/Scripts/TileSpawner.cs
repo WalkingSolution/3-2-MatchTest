@@ -58,6 +58,8 @@ public class TileSpawner : MonoBehaviour
         currentGem.gemPos = pos;
         currentGem.transform.parent= this.transform;
 
+        currentGem.SetUpGem(pos,this);
+
 
     }
 
