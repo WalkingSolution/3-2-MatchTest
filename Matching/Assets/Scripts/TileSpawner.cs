@@ -10,13 +10,16 @@ public class TileSpawner : MonoBehaviour
     public int height;
     public int width;
     public GameObject [,] allTiles;
+
+    public Gem[,] allGems;
     public List<Gem> gems;
     public enum GemType {banana, blueberry, apple,pear,strawberry,orange,grapes};
     public enum BoardState{move,wait}
     public BoardState currentState = BoardState.move;
 
     void Awake()
-    {
+    {   
+        allGems = new Gem [ width, height];
         allTiles = new GameObject[width,height];
         for(int x = 0; x<width; x++)
         {
@@ -59,8 +62,11 @@ public class TileSpawner : MonoBehaviour
         Gem currentGem = Instantiate(_gem,new Vector3(pos.x,pos.y,0),Quaternion.identity);
         currentGem.name = "Gem "+pos.x+","+pos.y;
         currentGem.gemPos = pos;
-        currentGem.SetUpGem(pos,this);
+
         currentGem.transform.parent= this.transform;
+        allGems [ pos.x,pos.y]= currentGem;
+
+        currentGem.SetUpGem(pos,this);
 
 
     }
